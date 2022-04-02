@@ -77,3 +77,5 @@ defmodule Problem4 do
   end
 
 end
+
+IO.puts Problem4.max_palin(3)

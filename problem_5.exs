@@ -58,3 +58,5 @@ defmodule Problem5 do
     Map.put(map, key, 1)
   end
 end
+
+IO.puts Problem5.lcm(20)

@@ -25,3 +25,5 @@ defmodule Problem2_1 do
   def fibonacci(2), do: 2
   def fibonacci(n), do: fibonacci(n - 1) + fibonacci(n - 2)
 end
+
+IO.puts Problem2_1.sum(4_000_000)

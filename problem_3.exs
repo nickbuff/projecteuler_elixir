@@ -26,3 +26,5 @@ defmodule Problem3 do
   end
 
 end
+
+IO.puts Problem3.max_prime(600851475143)

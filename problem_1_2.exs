@@ -22,3 +22,5 @@ defmodule Problem1_2 do
   end
 
 end
+
+IO.puts Problem1_2.sum(1000)
