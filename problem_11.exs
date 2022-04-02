@@ -7,7 +7,7 @@ defmodule Problem11 do
     create_coordinates(n, chunk) 
     |> Enum.map( fn cc ->
       Enum.reduce(cc, 1, fn c, p ->
-          p * String.to_integer(grid[elem(c, 0)][elem(c, 1)]) 
+          p * grid[elem(c, 0)][elem(c, 1)]
         end)
       end
     ) |> Enum.max
@@ -40,14 +40,15 @@ defmodule Problem11 do
   def string_to_maps(s) do
     String.split(s, "\n") 
     |> ( Enum.map(fn n -> 
-          String.split(n, " ") 
+          String.split(n, " ")
+          |> Enum.map(&String.to_integer/1)
           |> _list_to_map() 
         end) ) 
     |> _list_to_map()
   end
 
   defp _list_to_map(l) do
-    1..length(l) 
+    1..length(l)
     |> Stream.zip(l)
     |> Enum.into(%{})
   end
