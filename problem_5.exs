@@ -26,23 +26,17 @@ defmodule Problem5 do
 
   def add_max_key_value(r, k, v), do: %{r | k => v}
 
-  def primes_list(max) do
-    Enum.map((2..max), fn n -> Problem3.match_primes(n) end) |> primes_to_maps
-  end
+  def primes_list(max), do: Enum.map((2..max), fn n -> Problem3.match_primes(n) 
+                                                       |> primes_to_map end)
 
-  def primes_to_maps([]), do: []
-  def primes_to_maps([ head | tail ]) do
-    [ transform_single_primes(head) | primes_to_maps(tail) ]
-  end
-
-  def transform_single_primes(_, map \\ %{})
-  def transform_single_primes([], map), do: map 
-  def transform_single_primes([ head | tail ], map) do
+  def primes_to_map(_, map \\ %{})
+  def primes_to_map([], map), do: map 
+  def primes_to_map([ head | tail ], map) do
     nmap = case Map.has_key? map, head do
       true -> increase_count(map, head)
       false -> initialize_count(map, head)
     end
-    transform_single_primes(tail, nmap)
+    primes_to_map(tail, nmap)
   end
 
   def increase_count(map, key) do
