@@ -7,14 +7,21 @@ defmodule Problem18 do
     _max_path(triangle, lines - 1)
   end
 
-  def _max_path(_triangle, _i, sum \\ [])
-  def _max_path(_triangle, i, [ s | []]) when i == 0, do: IO.inspect s
-  def _max_path(triangle, i, []), do: _max_path(triangle, i, Map.values(triangle[i + 1]))
-  def _max_path(triangle, i, sum) do
+  defp _max_path(_triangle, _i, sum \\ [])
+  defp _max_path(_triangle, i, [ s | []]) when i == 0, do: IO.inspect s
+  defp _max_path(triangle, i, []), do: _max_path(triangle, i, _map_sorted_values(triangle[i + 1]))
+  defp _max_path(triangle, i, sum) do
     new_sum = for j <- (1..i) do
       [] ++ ( triangle[i][j] + max(Enum.at(sum,j - 1), Enum.at(sum,j)))
     end
     _max_path(triangle, i - 1, new_sum)
+  end
+
+  defp _map_sorted_values(m) do
+    m
+    |> Enum.to_list
+    |> Enum.sort( fn ({key1, _}, {key2, _}) -> key1 < key2 end)
+    |> Enum.map( fn {_, v} -> v end)
   end
 
 end
