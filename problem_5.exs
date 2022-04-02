@@ -4,8 +4,7 @@ defmodule Problem5 do
   def lcm(max) do
     primes = ( primes_list(max) |> find_max_primes )
     Enum.reduce(primes, 1, fn { k, v }, p -> 
-      k_int = k |> Atom.to_string |> String.to_integer
-      p * ( :math.pow(k_int, v) |> trunc )
+      p * ( :math.pow(k, v) |> trunc )
     end)
   end
 
@@ -39,10 +38,9 @@ defmodule Problem5 do
   def transform_single_primes(_, map \\ %{})
   def transform_single_primes([], map), do: map 
   def transform_single_primes([ head | tail ], map) do
-    key = head |> Integer.to_string |> String.to_atom
-    nmap = case Map.has_key? map, key do
-      true -> increase_count(map, key)
-      false -> initialize_count(map, key)
+    nmap = case Map.has_key? map, head do
+      true -> increase_count(map, head)
+      false -> initialize_count(map, head)
     end
     transform_single_primes(tail, nmap)
   end
