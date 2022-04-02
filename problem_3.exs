@@ -16,10 +16,7 @@ defmodule Problem3 do
   def is_prime(n) when n in [1,2,3], do: true
   def is_prime(n) do
     limit = trunc(:math.sqrt(n))
-    case 2..limit |> Enum.filter( fn d -> rem(n, d) == 0 and is_prime(d) end) do
-      [] -> true
-       _ -> false
-    end
+    (2..limit |> Enum.filter( fn d -> rem(n, d) == 0 and is_prime(d) end)) == []
   end
 
 end
