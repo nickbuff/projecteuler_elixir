@@ -5,9 +5,7 @@ defmodule Problem1_1 do
   	transform(range) |> Enum.sum()
   end
 
-  def transform(range) do
-    Enum.map(range, &(transform_one(&1)))
-  end
+  def transform(range), do: Enum.map(range, &(transform_one(&1)))
 
   def match do
     fn
@@ -18,9 +16,7 @@ defmodule Problem1_1 do
     end
   end
 
-  def transform_one(n) do
-    match().(rem(n,3), rem(n,5), n)
-  end
+  def transform_one(n), do: match().(rem(n,3), rem(n,5), n)
 
 end
 

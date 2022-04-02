@@ -25,12 +25,10 @@ defmodule Problem5 do
     end 
   end
 
-  def add_max_key_value(r, k, v) do
-    %{r | k => v}
-  end
+  def add_max_key_value(r, k, v), do: %{r | k => v}
 
   def primes_list(max) do
-    Enum.map((1..max), fn n -> Problem3.match_primes(n) end) |> primes_to_maps
+    Enum.map((2..max), fn n -> Problem3.match_primes(n) end) |> primes_to_maps
   end
 
   def primes_to_maps([]), do: []
@@ -54,9 +52,7 @@ defmodule Problem5 do
     %{map | key => count + 1}
   end
 
-  def initialize_count(map, key) do
-    Map.put(map, key, 1)
-  end
+  def initialize_count(map, key), do: Map.put(map, key, 1)
 end
 
 IO.puts Problem5.lcm(20)

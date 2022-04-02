@@ -16,16 +16,9 @@ defmodule Problem2_2 do
   end
 
   def fibonacci_list(max, n \\ 1) do
-    case check_below_max(fibonacci(n + 1), max) do
-      true  -> [ fibonacci(n) | fibonacci_list(max, n + 1) ]
-      false -> [ fibonacci(n) ]
-    end
-  end
-
-  def check_below_max(current, max) do
     cond do
-      current <= max -> true
-      current >  max -> false
+      fibonacci(n + 1) <= max -> [ fibonacci(n) | fibonacci_list(max, n + 1) ]
+      fibonacci(n + 1) > max  -> [ fibonacci(n) ]
     end
   end
 

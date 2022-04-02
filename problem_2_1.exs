@@ -1,16 +1,9 @@
 defmodule Problem2_1 do
   def sum(max, n \\ 1) do
     current = fibonacci(n)
-    case check_below_max(fibonacci(n + 1), max) do
-      true  -> filter_even(current) + sum(max, n + 1)
-      false -> filter_even(current)
-    end
-  end
-
-  def check_below_max(current, max) do
     cond do
-      current <= max -> true
-      current >  max -> false
+      fibonacci(n + 1) <= max -> filter_even(current) + sum(max, n + 1)
+      fibonacci(n + 1) > max  -> filter_even(current)
     end
   end
 

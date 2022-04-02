@@ -1,8 +1,6 @@
 defmodule Problem4 do
 
-  def mult_bound(n) do
-    { min_n_digits(n), max_n_digits(n) }
-  end
+  def mult_bound(n), do: { min_n_digits(n), max_n_digits(n) }
 
   def seek_bound(n) do
     low  = min_n_digits(n) * min_n_digits(n)
@@ -68,13 +66,9 @@ defmodule Problem4 do
   end
 
   def min_n_digits(1), do: 1
-  def min_n_digits(n) when n > 1 do
-    :math.pow(10, n - 1) |> trunc
-  end
+  def min_n_digits(n) when n > 1, do: :math.pow(10, n - 1) |> trunc
 
-  def is_palin(number) do
-    to_charlist(number) == (to_charlist(number) |> Enum.reverse)
-  end
+  def is_palin(number), do: to_charlist(number) == (to_charlist(number) |> Enum.reverse)
 
 end
 
