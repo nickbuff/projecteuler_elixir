@@ -7,16 +7,16 @@ defmodule Problem1_1 do
 
   def transform(range), do: Enum.map(range, &(transform_one(&1)))
 
-  def match do
-    fn
-      (0,0,m) -> m
-      (0,_,m) -> m
-      (_,0,m) -> m
-      (_,_,_) -> 0
+  def transform_one(n), do: _transform_one(n)
+
+  defp _transform_one(n) do
+    case {rem(n,3), rem(n,5), n} do
+      {0,0,n} -> n
+      {0,_,n} -> n
+      {_,0,n} -> n
+      {_,_,_} -> 0
     end
   end
-
-  def transform_one(n), do: match().(rem(n,3), rem(n,5), n)
 
 end
 
