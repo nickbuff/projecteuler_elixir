@@ -1,0 +1,26 @@
+defmodule Problem3 do  
+  def max_prime(n) do
+  	match_primes(n) |> Enum.max
+  end
+
+  def match_primes(n, d \\ 2) do
+  	if d < n do
+			case rem(n, d) == 0 and is_prime(d) do
+				true  -> [ d | match_primes(div(n, d), d) ]
+				false -> match_primes(n, d + 1)
+			end
+		else
+			[d]
+		end
+  end
+
+  def is_prime(n) when n in [1,2,3], do: true
+  def is_prime(n) do
+  	limit = trunc(:math.sqrt(n))
+  	case 2..limit |> Enum.filter( fn d -> rem(n, d) == 0 and is_prime(d) end) do
+  		[] -> true
+  		 _ -> false
+  	end
+  end
+
+end
