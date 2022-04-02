@@ -7,18 +7,18 @@ defmodule Problem2_2 do
   end
 
   def sum_even_only(list) do
-    Enum.reduce list, 0, fn (f, acc) ->
+    Enum.reduce(list, 0, fn f, acc ->
       case Integer.is_even(f) do
-        true  -> acc + f
+        true -> acc + f
         false -> acc
       end
-    end
+    end)
   end
 
   def fibonacci_list(max, n \\ 1) do
     cond do
-      fibonacci(n + 1) <= max -> [ fibonacci(n) | fibonacci_list(max, n + 1) ]
-      fibonacci(n + 1) > max  -> [ fibonacci(n) ]
+      fibonacci(n + 1) <= max -> [fibonacci(n) | fibonacci_list(max, n + 1)]
+      fibonacci(n + 1) > max -> [fibonacci(n)]
     end
   end
 
@@ -27,4 +27,4 @@ defmodule Problem2_2 do
   def fibonacci(n), do: fibonacci(n - 1) + fibonacci(n - 2)
 end
 
-IO.puts Problem2_2.sum(4_000_000)
+IO.puts(Problem2_2.sum(4_000_000))

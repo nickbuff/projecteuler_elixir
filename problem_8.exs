@@ -1,8 +1,8 @@
 defmodule Problem8 do
   def max_adj_digits_mult(s, n) do
-    chop(s |> String.replace(~r/\r|\n/, ""), n) 
-      |> Enum.map(fn t -> mult(t) end) 
-      |> Enum.max
+    chop(s |> String.replace(~r/\r|\n/, ""), n)
+    |> Enum.map(fn t -> mult(t) end)
+    |> Enum.max()
   end
 
   def mult(t) do
@@ -11,17 +11,18 @@ defmodule Problem8 do
 
   def chop(s, n, acc \\ 0, result \\ [])
   def chop(_s, n, acc, _) when acc == n + 1, do: []
+
   def chop(s, n, acc, result) do
     result ++ chop(String.slice(s, 1..-1), n, acc + 1, chop_single(s, n))
   end
 
-  def chop_single(s, n), do: for << c::binary-size(n) <- s >>, do: c
+  def chop_single(s, n), do: for(<<c::binary-size(n) <- s>>, do: c)
 
   def charlist_to_digits_list(l) do
-    String.split(to_string(l), "", trim: true) \
-      |> Enum.map(fn c -> 
-        String.to_integer(c) 
-      end)
+    String.split(to_string(l), "", trim: true)
+    |> Enum.map(fn c ->
+      String.to_integer(c)
+    end)
   end
 end
 
@@ -46,4 +47,4 @@ m = "73167176531330624919225119674426574742355349194934
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"
 
-IO.puts Problem8.max_adj_digits_mult(m, 13)
+IO.puts(Problem8.max_adj_digits_mult(m, 13))

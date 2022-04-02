@@ -1,49 +1,49 @@
 defmodule Problem11 do
   def greatest_product(s, chunk) do
-
     grid = s |> string_to_maps()
-    n    = map_size(grid)
+    n = map_size(grid)
 
-    create_coordinates(n, chunk) 
-    |> Enum.map( fn cc ->
+    create_coordinates(n, chunk)
+    |> Enum.map(fn cc ->
       Enum.reduce(cc, 1, fn c, p ->
-          p * grid[elem(c, 0)][elem(c, 1)]
-        end)
-      end
-    ) |> Enum.max
-
+        p * grid[elem(c, 0)][elem(c, 1)]
+      end)
+    end)
+    |> Enum.max()
   end
 
   def create_coordinates(n, chunk) do
-    lines  = 1..n
+    lines = 1..n
     chunks = Stream.chunk_every(lines, chunk, 1, :discard)
 
     create_horizontal_coordinates(lines, chunks) ++ create_diagonal_coordinates(chunks)
   end
 
   def create_horizontal_coordinates(lines, chunks) do
-    chunks |> Enum.reduce([], fn(c, l) -> 
-                      cch = for x <- lines, do: for y <- c, do: {x, y}
-                      ccv = for x <- lines, do: for y <- c, do: {y, x}
-                      l ++ cch ++ ccv
-                   end)
+    chunks
+    |> Enum.reduce([], fn c, l ->
+      cch = for x <- lines, do: for(y <- c, do: {x, y})
+      ccv = for x <- lines, do: for(y <- c, do: {y, x})
+      l ++ cch ++ ccv
+    end)
   end
 
   def create_diagonal_coordinates(chunks) do
-    chunks |> Enum.reduce([], fn(c, l) ->
-                    ccl = for y <- chunks, do: Stream.zip(c, y)
-                    ccr = for y <- chunks, do: Stream.zip(Enum.reverse(c), y)                      
-                    l ++ ccl ++ ccr
-                  end)
+    chunks
+    |> Enum.reduce([], fn c, l ->
+      ccl = for y <- chunks, do: Stream.zip(c, y)
+      ccr = for y <- chunks, do: Stream.zip(Enum.reverse(c), y)
+      l ++ ccl ++ ccr
+    end)
   end
 
   def string_to_maps(s) do
-    String.split(s, "\n") 
-    |> ( Enum.map(fn n -> 
-          String.split(n, " ")
-          |> Enum.map(&String.to_integer/1)
-          |> _list_to_map() 
-        end) ) 
+    String.split(s, "\n")
+    |> Enum.map(fn n ->
+      String.split(n, " ")
+      |> Enum.map(&String.to_integer/1)
+      |> _list_to_map()
+    end)
     |> _list_to_map()
   end
 
@@ -75,5 +75,4 @@ s = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
 
-IO.puts Problem11.greatest_product(s, 4)
-
+IO.puts(Problem11.greatest_product(s, 4))

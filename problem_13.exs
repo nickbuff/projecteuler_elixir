@@ -1,14 +1,12 @@
 defmodule Problem13 do
-
   def string_to_list_of_ints(s, n) do
-    String.split(s, "\n") 
+    String.split(s, "\n")
     |> Enum.map(&String.to_integer/1)
-    |> Enum.sum
-    |> Integer.digits
+    |> Enum.sum()
+    |> Integer.digits()
     |> Enum.take(n)
-    |> Integer.undigits
+    |> Integer.undigits()
   end
-
 end
 
 s = "37107287533902102798797998220837590246510135740250
@@ -112,4 +110,4 @@ s = "37107287533902102798797998220837590246510135740250
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690"
 
-IO.inspect Problem13.string_to_list_of_ints(s, 10)
+IO.inspect(Problem13.string_to_list_of_ints(s, 10))

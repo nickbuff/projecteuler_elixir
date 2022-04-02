@@ -8,26 +8,28 @@ defmodule Problem67 do
   end
 
   defp _max_path(_triangle, _i, sum \\ [])
-  defp _max_path(_triangle, i, [ s | []]) when i == 0, do: IO.inspect s
+  defp _max_path(_triangle, i, [s | []]) when i == 0, do: IO.inspect(s)
   defp _max_path(triangle, i, []), do: _max_path(triangle, i, _map_sorted_values(triangle[i + 1]))
+
   defp _max_path(triangle, i, sum) do
-    new_sum = for j <- (1..i) do
-      [] ++ ( triangle[i][j] + max(Enum.at(sum,j - 1), Enum.at(sum,j)))
-    end
+    new_sum =
+      for j <- 1..i do
+        [] ++ (triangle[i][j] + max(Enum.at(sum, j - 1), Enum.at(sum, j)))
+      end
+
     _max_path(triangle, i - 1, new_sum)
   end
 
   defp _map_sorted_values(m) do
     m
-    |> Enum.to_list
-    |> Enum.sort( fn ({key1, _}, {key2, _}) -> key1 < key2 end)
-    |> Enum.map( fn {_, v} -> v end)
+    |> Enum.to_list()
+    |> Enum.sort(fn {key1, _}, {key2, _} -> key1 < key2 end)
+    |> Enum.map(fn {_, v} -> v end)
   end
-
 end
 
-triangle = 
-"59
+triangle =
+  "59
 73 41
 52 40 09
 26 53 06 34

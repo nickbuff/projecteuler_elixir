@@ -7,4 +7,4 @@ defmodule Problem6 do
   end
 end
 
-IO.puts Problem6.square_diff(100)
+IO.puts(Problem6.square_diff(100))
