@@ -3,7 +3,9 @@ defmodule Problem3 do
   	match_primes(n) |> Enum.max
   end
 
-  def match_primes(n, d \\ 2) do
+  def match_primes(n, d \\ 2)
+  def match_primes(1, _), do: [1]
+  def match_primes(n, d) when n >= 2 do
   	if d < n do
 			case rem(n, d) == 0 and is_prime(d) do
 				true  -> [ d | match_primes(div(n, d), d) ]
