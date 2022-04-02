@@ -15,9 +15,7 @@ defmodule Problem8 do
     result ++ chop(String.slice(s, 1..-1), n, acc + 1, chop_single(s, n))
   end
 
-  def chop_single(s, n) do
-    for <<x::binary-size(n) <- s>>, do: x
-  end
+  def chop_single(s, n), do: for <<x::binary-size(n) <- s>>, do: x
 
   def charlist_to_digits_list(l) do
     String.split(to_string(l), "", trim: true) \

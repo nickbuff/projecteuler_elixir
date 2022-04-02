@@ -4,7 +4,7 @@ defmodule Problem9 do
   def inner_loop(s, a, b) when b < div(s, 2) do
     case s - a - b == :math.sqrt(a*a + b*b) do
       true -> [ a, b, s - a - b ]
-      false -> inner(s, a, b + 1)
+      false -> inner_loop(s, a, b + 1)
     end
   end
 
@@ -20,4 +20,4 @@ defmodule Problem9 do
   def triplet_mult(s), do: triplet(s) |> Enum.reduce(1, fn n, acc -> n * acc end)
 end
 
-IO.inspect Problem9.triplet_mult(1000)
+IO.puts Problem9.triplet_mult(1000)
