@@ -21,4 +21,4 @@ defmodule Problem14_1 do
 
 end
 
-IO.inspect Problem14.max_length(1_000_000)
+IO.inspect Problem14_1.max_length(1_000_000)
